@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>2b1c report</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<div id="wrapper">
+			<section id="three" class="wrapper style1 fade-up">
+				<div class="inner">
+					<h2>2b1c - 11班</h2>
+					<p>收假回報系統</p>
+					<div class="split style1">
+						<section>
+							<form method="post" action="https://script.google.com/macros/s/AKfycbxx1RPyExrs1AAaXFwVNnmJgqVw-YKqmjHtxKnaR8FL/exec">
+								<div class="fields">
+									<div class="field half">
+										<label for="name">個人資訊 (001王小明 0912345678)</label>
+										<input type="text" name="name" id="name" />
+									</div>											
+                                    <div class="field half">
+										<label for="what">做什麼事</label>
+										<input type="text" name="what" id="what" />
+									</div>
+                                    <div class="field half">
+										<label for="who">和誰</label>
+										<input type="text" name="who" id="who" />
+									</div>
+                                    <div class="field half">
+										<label for="where">在哪</label>
+										<input type="text" name="where" id="where" />
+                                        <input type="hidden" name="map" id="map" />
+									</div>
+								</div>
+								<ul class="actions" id="report">
+									<li><a class="button submit">回報</a></li>
+								</ul>
+							</form>
+						</section>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+        
+        <script>
+            $("#name").val(getCookie('name'));
+            $("#what").val(getCookie('what'));
+            $("#who").val(getCookie('who'));
+            $("#where").val(getCookie('where'));
+            getLocation();
+            
+            $( "#report" ).click(function() {
+                doCookieSetup('name', $( "#name" ).val());
+                doCookieSetup('what', $( "#what" ).val());
+                doCookieSetup('who', $( "#who" ).val());
+                doCookieSetup('where', $( "#where" ).val());
+            });
+            
+            function doCookieSetup(name, value) {
+              var expires = new Date();
+              expires.setTime(expires.getTime() + 8640000000);
+              document.cookie = name + "=" + escape(value) + ";expires=" + expires.toGMTString()
+            }
+            
+            function getCookie(name) {
+              var arg = escape(name) + "=";
+              var nameLen = arg.length;
+              var cookieLen = document.cookie.length;
+              var i = 0;
+              while (i < cookieLen) {
+                var j = i + nameLen;
+                if (document.cookie.substring(i, j) == arg) return getCookieValueByIndex(j);
+                i = document.cookie.indexOf(" ", i) + 1;
+                if (i == 0) break;
+              }
+              return null;
+            }
+            
+            function getCookieValueByIndex(startIndex) {
+              var endIndex = document.cookie.indexOf(";", startIndex);
+              if (endIndex == -1) endIndex = document.cookie.length;
+              return unescape(document.cookie.substring(startIndex, endIndex));
+            }
+        
+            function getLocation() {
+              if (navigator.geolocation) {
+                return navigator.geolocation.getCurrentPosition(showPosition);
+              } else { 
+                alert("Geolocation is not supported by this browser.");
+              }
+            }
+
+            function showPosition(position) {
+              var latitude = Math.round(position.coords.latitude * 100) / 100;
+              var longitude = Math.round(position.coords.longitude * 100) / 100;
+              
+              $("#map").val("http://maps.google.com.tw/maps?f=q&geocode=&q="+latitude+','+longitude);
+            }
+        </script>
+	</body>
+</html>
