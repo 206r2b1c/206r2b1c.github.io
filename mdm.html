@@ -1,0 +1,32 @@
+<head>
+<title>國軍MDM</title>
+<link  type="image/x-icon" href="icon.png" />
+</head>
+<body onload="ShowTime()">
+<div style="position:relative">
+<div id="showbox" style="position:absolute; left:29%; top:94%; font-size:60px; font-family:sans-serif;"></div>
+<style type="text/css"></style>
+<img src='1.jpg'></img>
+</div>
+
+<script language="JavaScript">
+    function ShowTime(){
+        var date = new Date(); 
+        var now = ""; 
+        now = (date.getFullYear()-1911)+"-"; 
+        now = now + addZero(date.getMonth()+1)+"-"; 
+        now = now + addZero(date.getDate())+"  "; 
+        now = now + addZero(date.getHours())+":"; 
+        now = now + addZero(date.getMinutes())+":"; 
+        now = now + addZero(date.getSeconds()); 
+        document.getElementById('showbox').innerHTML = now;
+        setTimeout('ShowTime()',1000);
+    }
+
+    function addZero(a){
+        if(a < 10){
+         return '0' + a
+        }
+        return a
+    }
+</script>
