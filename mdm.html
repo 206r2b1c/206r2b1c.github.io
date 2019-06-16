@@ -2,7 +2,7 @@
 <title>國軍MDM</title>
 <link  type="image/x-icon" href="icon.png" />
 </head>
-<body onload="ShowTime()">
+<body onload="ShowTime()" style="touch-action: pan-y;">
 <div style="position:relative">
 <div id="showbox" style="position:absolute; left:29%; top:94%; font-size:60px; font-family:sans-serif;"></div>
 <style type="text/css"></style>
@@ -10,6 +10,15 @@
 </div>
 
 <script language="JavaScript">
+    document.addEventListener('touchmove', function (event) {
+        event.preventDefault();
+    }, false);
+
+    document.addEventListener('touchmove', function (event) {
+        window.event.returnValue = false;
+    }, false);
+
+
     function ShowTime(){
         var date = new Date(); 
         var now = ""; 
