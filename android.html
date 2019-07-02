@@ -1,0 +1,41 @@
+<head>
+<title>國軍MDM</title>
+<link  type="image/x-icon" href="icon.png" />
+</head>
+<body onload="ShowTime()">
+<div style="position:relative">
+<div id="showbox" style="position:absolute; left:24%; top:93%; font-size:22px; font-family:sans-serif; background-size: cover; margin:0px; padding:0px; position: fixed;"></div>
+<style type="text/css"></style>
+
+</div>
+<style>
+    body{
+        margin:0px;
+        padding:0px;
+        background:#fff url('android.jpg') center center fixed no-repeat;
+        background-size: cover;
+    }        
+</style>
+</body>
+<script language="JavaScript">
+
+    function ShowTime(){
+        var date = new Date(); 
+        var now = ""; 
+        now = (date.getFullYear()-1911)+"-"; 
+        now = now + addZero(date.getMonth()+1)+"-"; 
+        now = now + addZero(date.getDate())+"  "; 
+        now = now + addZero(date.getHours())+":"; 
+        now = now + addZero(date.getMinutes())+":"; 
+        now = now + addZero(date.getSeconds()); 
+        document.getElementById('showbox').innerHTML = now;
+        setTimeout('ShowTime()',1000);
+    }
+
+    function addZero(a){
+        if(a < 10){
+         return '0' + a
+        }
+        return a
+    }
+</script>
